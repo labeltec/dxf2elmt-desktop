@@ -1,0 +1,69 @@
+[package]
+name = "dxf2elmt"
+version = "0.5.0"
+edition = "2021"
+description = "A desktop application with GUI to convert .dxf files into .elmt files for QElectroTech"
+authors = ["tonilupi <github: labeltec>", "Vadoola <github: vadoola>", "Antonio Aguilar <github: antonioaja>"]
+readme = "README.md"
+repository = "https://github.com/labeltec/dxf2elmt-desktop"
+license = "MIT"
+rust-version = "1.79.0"
+
+[[bin]]
+name = "dxf2elmt"
+path = "src/main.rs"
+
+[[bin]]
+name = "dxf2elmt-desktop"
+path = "src/bin/desktop.rs"
+
+[profile.release]
+strip = true
+lto = true
+
+[profile.dev.package."*"]
+opt-level = 3
+
+[dependencies]
+dxf = "0.6.0"
+simple-xml-builder = "1.1.0"
+bspline = "1.1.0"
+uuid = { version = "1.16", features = ["serde", "v4"] }
+tempfile = "3.15"
+clap = { version = "4.5", features = ["derive"] }
+anyhow = "1.0.97"
+wild = "2.2"
+hex_color = "3.0.0"
+itertools = "0.14"
+unicode-segmentation = "1.12.0"
+tracing = "0.1"
+venator = { version = "1.1", optional = true }
+tracing-subscriber = { version = "0.3", features = ["env-filter"] }
+serde = { version = "1.0", features = ["derive"] }
+
+[dependencies.dioxus]
+version = "0.7"
+features = ["desktop"]
+
+[dependencies.dioxus-desktop]
+version = "0.7"
+
+#[lints.clippy]
+#unwrap_used = "deny"
+
+[target.'cfg(not(target_arch = "wasm32"))'.dependencies]
+rfd = "0.15"
+
+#undecided on how I want to handle logging in this crate right now.
+#I do want to do a bit of tracing debugging on some of these recursive blocks though
+#for now I'll add tracing and venator under a trace feature that is disabled by default
+#maybe a log feature which uses trace to log to a text file or syslog or something
+#and a seperate feature that logs to venator? Also figure out how best to isolate
+#it to a module, so I don' thave #[cfg(feature = ...)] all over the place
+#https://www.shuttle.dev/blog/2024/01/09/getting-started-tracing-rust#instrumentation-in-tracing
+[build-dependencies]
+winres = "0.1"
+
+[features]
+default = []
+venator = ["dep:venator"]

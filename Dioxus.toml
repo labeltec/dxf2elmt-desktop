@@ -1,0 +1,13 @@
+[application]
+name = "dxf2elmt-desktop"
+default_platform = "desktop"
+out_dir = "dist"
+asset_dir = "assets"
+
+[desktop.app]
+name = "DXF to ELMT Converter"
+title = "DXF to ELMT Converter"
+width = 900
+height = 600
+resizable = true
+
