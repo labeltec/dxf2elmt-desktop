@@ -10,6 +10,22 @@ This desktop version is maintained at: [https://github.com/labeltec/dxf2elmt-des
 
 The original CLI project is maintained at: [https://github.com/Vadoola/dxf2elmt](https://github.com/Vadoola/dxf2elmt)
 
+## System Requirements
+
+### Windows
+
+The desktop version (`dxf2elmt-desktop.exe`) requires **Visual C++ Redistributable** to be installed on your system.
+
+If you encounter an error when running the application, please install the latest Visual C++ Redistributable from Microsoft:
+
+**Download:** [Visual C++ Redistributable Latest Supported Downloads](https://learn.microsoft.com/es-es/cpp/windows/latest-supported-vc-redist?view=msvc-170#latest-supported-redistributable-version)
+
+The application requires the **x64** version for 64-bit Windows systems.
+
+### Other Platforms
+
+The CLI version should work on any platform supported by Rust without additional dependencies.
+
 ## How to Use
 
 ### CLI Version
